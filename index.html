@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Reserva tu Sesión Navideña</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Inicializar EmailJS inmediatamente
+    (function() {
+      emailjs.init("t3KP6mW1OcCJ04m8Z"); // Reemplaza con tu Public Key real
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Banner Navideño -->
+<div class="christmas-banner" style="
+    background: linear-gradient(45deg, #ff0000, #32cd32);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1000;
+    margin-bottom: 10px;
+    border-radius: 8px;
+">
+    🎄 ¡Feliz Navidad! - Reserva tu sesión fotográfica especial 🎅
+</div>
+  <!-- El resto de tu HTML permanece igual -->
+  <div id="app">
+    <div class="logo-container">
+      <img src="images/LogoW.png" alt="Logo" class="logo" id="logo-image">
+    </div>
+    
+    <h1>Selecciona un producto y registra tu fecha</h1>
+    
+    <div id="packages-container">
+      <div class="package" data-pkg="NOCHE BUENA">
+        <h3>NOCHE BUENA</h3>
+        <ul>
+          <li>10 fotos digitales en alta resolución</li>
+          <li>7 impresiones premium 13x18cm</li>
+          <li>1 set fotográfico temático</li>
+          <li>Retoque digital profesional</li>
+        </ul>
+        <div class="price-container">
+          <div class="regular-price">
+            <span class="price-label">Precio Regular:</span>
+            <span class="price-amount crossed">$1,600</span>
+          </div>
+          <div class="sale-price">
+            <span class="price-label">Precio de Preventa:</span>
+            <span class="price-amount">$1,400</span>
+          </div>
+          <div class="discount-badge">¡Ahorras $200!</div>
+        </div>
+      </div>
+      
+      <div class="package" data-pkg="UVA">
+        <h3>UVA</h3>
+        <ul>
+          <li>15 fotos digitales en alta resolución</li>
+          <li>10 impresiones premium 13x18cm</li>
+          <li>1 impresión de lujo 20x25cm</li>
+          <li>1 sets fotográfico temático</li>
+          <li>Retoque digital profesional</li>
+        </ul>
+        <div class="price-container">
+          <div class="regular-price">
+            <span class="price-label">Precio Regular:</span>
+            <span class="price-amount crossed">$2,000</span>
+          </div>
+          <div class="sale-price">
+            <span class="price-label">Precio de Preventa:</span>
+            <span class="price-amount">$1,800</span>
+          </div>
+          <div class="discount-badge">¡Ahorras $200!</div>
+        </div>
+      </div>
+      
+      <div class="package" data-pkg="BRINDIS">
+        <h3>BRINDIS</h3>
+        <ul>
+          <li>20 fotos digitales en alta resolución</li>
+          <li>10 impresiones premium 13x18cm</li>
+          <li>2 impresiones de lujo 20x25cm</li>
+          <li>1 sets fotográficos temáticos</li>
+          <li>Retoque digital profesional</li>
+        </ul>
+        <div class="price-container">
+          <div class="regular-price">
+            <span class="price-label">Precio Regular:</span>
+            <span class="price-amount crossed">$2,400</span>
+          </div>
+          <div class="sale-price">
+            <span class="price-label">Precio de Preventa:</span>
+            <span class="price-amount">$2,200</span>
+          </div>
+          <div class="discount-badge">¡Ahorras $200!</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="form-container" class="hidden">
+      <h2>Completa tus datos</h2>
+      
+      <div class="form-group">
+        <label for="name" class="form-label">Nombre completo</label>
+        <input type="text" id="name" placeholder="Ingresa tu nombre completo" required class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone" class="form-label">Teléfono de contacto</label>
+        <input type="tel" id="phone" placeholder="Ingresa tu número de teléfono" required class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label for="people" class="form-label">Número de personas</label>
+        <input type="number" id="people" min="1" max="10" placeholder="¿Cuántas personas serán?" required class="form-input">
+      </div>
+      
+      <div class="form-group">
+        <label for="date" class="form-label">Fecha</label>
+        <input type="date" id="date" required class="form-input date-input">
+        <div class="date-validation-message" id="date-validation-message">
+          Solo puedes agendar a partir del 25 de noviembre de 2025
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="time" class="form-label">Hora</label>
+        <select id="time" required disabled class="form-input">
+          <option value="">Selecciona una fecha primero</option>
+        </select>
+      </div>
+      
+      <button id="btn-register">Confirmar Reserva</button>
+    </div>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-text"></div>
+        <button id="modal-ok">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="cliente.js"></script>
+</body>
+</html>
